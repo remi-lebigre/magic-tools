@@ -1,0 +1,39 @@
+<ion-modal-view class="row" id="card-modal">
+    <ion-header-bar>
+        <h1 class="title">{{card.name}}
+            <i class="icon ion-star"></i>
+            <i class="icon ion-plus"></i>
+        </h1>
+
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeCard()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+
+        <div class="row">
+            <div class="col col-80">
+                <img id="card-modal-image" src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
+            </div>
+            <div class="col col-20" id="card-modal-statistics">
+                <div ng-bind-html="card._manaCost"></div>
+                <p id="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="item item-divider">
+                {{card.type}}
+            </div>
+            <div class="item item-text-wrap">
+                {{card.originalText}}
+            </div>
+        </div>
+
+    </ion-content>
+
+    <ion-footer-bar>
+        <div ng-bind-html="card._manaCost"></div>
+        <p ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
+    </ion-footer-bar>
+</ion-modal-view>

@@ -1,0 +1,80 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+.list .item img {
+  max-height: none;
+  height: auto;
+}
+
+.item-thumbnail-left, .item-thumbnail-left .item-content {
+  min-height: 135px;
+
+}
+
+.search-by-color {
+  #search-by-blue {
+    background: url("../img/pictos/u.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+  #search-by-green {
+    background: url("../img/pictos/g.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+  #search-by-red {
+    background: url("../img/pictos/r.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+  #search-by-black {
+    background: url("../img/pictos/b.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+  #search-by-white {
+    background: url("../img/pictos/w.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+  #search-by-artifact {
+    background: url("../img/pictos/x.png") 50% 50% no-repeat;
+    background-size: contain;
+  }
+}
+
+/* modal */
+#card-modal-image {
+  width: 100%;
+  height: auto;
+}
+
+#card-modal-statistics {
+  img {
+    width: 25px;
+  }
+  margin-top: 13px;
+  position: relative;
+  #stats {
+    position: absolute;
+    bottom: 0;
+    font-size: 1.8em;
+    transform: translate(-50%, 0);
+    left: 50%;
+  }
+}

@@ -1,0 +1,43 @@
+<ion-view view-title="Search : {{totalCards}}">
+    <ion-content>
+
+        <div class="button-bar search-by-color">
+            <button id="search-by-blue" class="button button-clear" ng-click="findBy({color:'Blue'})"></button>
+            <button id="search-by-red" class="button button-clear" ng-click="findBy({color:'Red'})"></button>
+            <button id="search-by-green" class="button button-clear" ng-click="findBy({color:'Green'})"></button>
+            <button id="search-by-white" class="button button-clear" ng-click="findBy({color:'White'})"></button>
+            <button id="search-by-black" class="button button-clear" ng-click="findBy({color:'Black'})"></button>
+            <button id="search-by-artifact" class="button button-clear" ng-click="findBy({color:'none'})"></button>
+            <button class="button button-clear" ng-click="getRandCards(5)">
+                <i class="icon ion-help placeholder-icon"></i>
+            </button>
+        </div>
+
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Pick a card...">
+            </label>
+        </div>
+
+        <div class="list">
+        </div>
+        <div class="list" ng-repeat="card in result">
+            <a class="item item-thumbnail-left" href="#" ng-click="showCard(card.index)">
+                <img src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
+
+                <h2>{{card.name}}
+                    <i class="icon ion-star"></i>
+                    <i class="icon ion-plus"></i></h2>
+
+                <div ng-bind-html="card._manaCost">
+                    <span class="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</span>
+                </div>
+                <p>>{{card.originalText}} </p>
+
+                <div class="row">
+                </div>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
