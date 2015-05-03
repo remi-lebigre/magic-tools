@@ -1,6 +1,5 @@
 angular.module('starter.controllers')
     .controller('FavoritesController', function ($scope, Favorites) {
-        $scope.favoriteCards = Favorites.set($scope.favoriteIndexes, $scope.cards);
     })
 
     .factory('Favorites', function () {

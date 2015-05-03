@@ -7721,5 +7721,16 @@ a.button {
   transform: translate(0, -50%);
   top: 50%; }
 
+/*favorites stars picto color*/
 .selected {
   color: red; }
+
+/*autocomplete scrollbar*/
+.angucomplete-dropdown {
+  overflow-y: auto;
+  max-height: 200px; }
+
+#autocomplete-main1 .highlight, #autocomplete-main2 .highlight {
+  color: red; }
+#autocomplete-main1 .automatch, #autocomplete-main2 .automatch {
+  border: none; }

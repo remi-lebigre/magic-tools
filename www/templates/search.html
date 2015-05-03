@@ -13,11 +13,41 @@
             </button>
         </div>
 
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Pick a card...">
-            </label>
+        <div class="row">
+            <div class="col">
+                <div class="list list-inset">
+                    <div class="item item-input">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <angucomplete-alt id="autocomplete-main1"
+                                          input-class="automatch"
+                                          placeholder="By name..."
+                                          pause="100"
+                                          selected-object="autosearchResult"
+                                          local-data="cards"
+                                          search-fields="name"
+                                          title-field="name,cmc"
+                                          description-field="type"
+                                          match-class="highlight"
+                                          minlength="3"/>
+                    </div>
+                </div></div>
+            <div class="col">
+                <div class="list list-inset">
+                    <div class="item item-input">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <angucomplete-alt id="autocomplete-main2"
+                                          input-class="automatch"
+                                          placeholder="By description..."
+                                          pause="100"
+                                          selected-object="autosearchResult"
+                                          local-data="cards"
+                                          search-fields="originalText"
+                                          title-field="name,cmc"
+                                          description-field="type"
+                                          match-class="highlight"
+                                          minlength="10"/>
+                    </div>
+                </div></div>
         </div>
 
         <div class="list" ng-repeat="card in result">

@@ -88,6 +88,22 @@ $StatsSize: 1.8em;
   }
 }
 
+/*favorites stars picto color*/
 .selected {
   color: red;
+}
+
+/*autocomplete scrollbar*/
+.angucomplete-dropdown {
+  overflow-y: auto;
+  max-height: 200px; // your preference
+}
+
+#autocomplete-main1, #autocomplete-main2 {
+  .highlight {
+    color: red;
+  }
+  .automatch {
+    border: none;
+  }
 }

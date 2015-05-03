@@ -1,8 +1,14 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $ionicLoading, Database, Render) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $ionicLoading, Database, Render, Favorites) {
 
-
+        $scope.autosearchResult = function (e) {
+            console.debug('autosearchResult');
+            $scope.result=[];
+            $scope.result.push(e.originalObject);
+            console.log('result:',$scope.result);
+            console.log(e);
+        };
         //show loader
         $ionicLoading.show({
             template: 'loading'
@@ -10,7 +16,8 @@ angular.module('starter.controllers', [])
 
         //show card modal
         $ionicModal.fromTemplateUrl('templates/card.html', {
-            scope: $scope
+            scope: $scope,
+            animation: 'slide-in-right'
         }).then(function (modal) {
             $scope.modal = modal;
         });
@@ -37,7 +44,7 @@ angular.module('starter.controllers', [])
 
         $scope.toggleFav = function (index) {
             console.debug('toggleFav');
-            console.log('  $scope.cards[index].isFav:', $scope.cards[index].isFav);
+            console.log('$scope.cards[index].isFav:', $scope.cards[index].isFav);
             $scope.cards[index].isFav ? $scope.removeFav(index) : $scope.addFav(index);
         };
         $scope.addFav = function (index) {
@@ -46,6 +53,7 @@ angular.module('starter.controllers', [])
             console.log('$scope.selectedIndex:', $scope.selectedIndex);
             $scope.favoriteIndexes[index] = {};
             $scope.cards[index].isFav = true;
+            $scope.favoriteCards = Favorites.set($scope.favoriteIndexes, $scope.cards);
             window.localStorage.setItem('favorites', angular.toJson($scope.favoriteIndexes));
         };
         $scope.removeFav = function (index) {
@@ -53,6 +61,7 @@ angular.module('starter.controllers', [])
             $scope.selectedIndex = null;
             delete $scope.favoriteIndexes[index];
             $scope.cards[index].isFav = false;
+            $scope.favoriteCards = Favorites.set($scope.favoriteIndexes, $scope.cards);
             window.localStorage.setItem('favorites', angular.toJson($scope.favoriteIndexes));
         };
 
@@ -73,7 +82,6 @@ angular.module('starter.controllers', [])
                     console.log('color', color);
 
                     if (!color && oQuery['color'] == 'none') {
-
                         $scope.cards[card]._manaCost = Render.colors($scope.cards[card].manaCost);
                         $scope.result.push($scope.cards[card]);
                         i++;
@@ -97,6 +105,7 @@ angular.module('starter.controllers', [])
                 console.debug('cards sorted stored in scope.cards');
                 $scope.totalCards = success.length;
                 $scope.cards = success;
+                $scope.favoriteCards = Favorites.set($scope.favoriteIndexes, $scope.cards);
 
                 //TODO REMOVE WHEN TESTS DONE
                 cards = success;

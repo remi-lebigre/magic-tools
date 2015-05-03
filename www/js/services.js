@@ -17,13 +17,11 @@ angular.module('starter.controllers')
             }
             var index = 0;
             var aFavs = angular.fromJson(window.localStorage.getItem('favorites'));
-            oCardsSorted.forEach(function (i) {
-                if (aFavs[index]) {
-                    i.isFav = true;
-                }
-                i.index = index;
-                index++;
-            });
+                oCardsSorted.forEach(function (i) {
+                    (aFavs && aFavs[index]) ?  i.isFav = true : i.isFav = false;
+                    i.index = index;
+                    index++;
+                });
 
             var iTotal = oCardsSorted.length;
             console.log('filled oCardsSorted. Total:' + iTotal);
