@@ -7675,6 +7675,12 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.list .item .stats {
+  position: absolute;
+  right: 0;
+  padding-right: 10px;
+  top: 50%;
+  transform: translate(0, -50%); }
 .list .item img {
   max-height: none;
   height: auto; }
@@ -7714,3 +7720,6 @@ a.button {
   right: 10px;
   transform: translate(0, -50%);
   top: 50%; }
+
+.selected {
+  color: red; }

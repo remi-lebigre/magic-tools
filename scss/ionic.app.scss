@@ -21,9 +21,18 @@ $StatsSize: 1.8em;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-.list .item img {
-  max-height: none;
-  height: auto;
+.list .item {
+  .stats {
+    position: absolute;
+    right: 0;
+    padding-right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  img {
+    max-height: none;
+    height: auto;
+  }
 }
 
 .item-thumbnail-left, .item-thumbnail-left .item-content {
@@ -77,4 +86,8 @@ $StatsSize: 1.8em;
       top: 50%;
     }
   }
+}
+
+.selected {
+  color: red;
 }

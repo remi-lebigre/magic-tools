@@ -27,10 +27,11 @@
                 <img src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
 
                 <h2>{{card.name}}
-                    <i class="icon ion-star"></i>
+                    <i class="icon ion-star" ng-class="{ 'selected': card.isFav }" ng-click="$event.stopPropagation();toggleFav(card.index)"></i>
                     <i class="icon ion-plus"></i></h2>
 
-                <div ng-bind-html="card._manaCost">
+                <div style="position:relative;">
+                    <span ng-bind-html="card._manaCost"></span>
                     <span class="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</span>
                 </div>
                 <p>>{{card.originalText}} </p>

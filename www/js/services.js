@@ -2,48 +2,52 @@ angular.module('starter.controllers')
 
     .service('Database', function ($http, $q) {
 
-    var db = {};
-    db.format = function (sets) {
-        console.debug('Database setDataBase');
+        var db = {};
+        db.format = function (sets) {
+            console.debug('Database setDataBase');
 
-        var oSets = sets;
-        if (!oSets) {
-            console.error('oAllSets not yet initialized');
-            return false;
-        }
-        var oCardsSorted = [];
-        for (var set in oSets) {
-            oCardsSorted.push.apply(oCardsSorted, oSets[set].cards);
-        }
-        var index = 0;
-        oCardsSorted.forEach(function (i) {
-            i.index = index;
-            index++;
-        });
+            var oSets = sets;
+            if (!oSets) {
+                console.error('oAllSets not yet initialized');
+                return false;
+            }
+            var oCardsSorted = [];
+            for (var set in oSets) {
+                oCardsSorted.push.apply(oCardsSorted, oSets[set].cards);
+            }
+            var index = 0;
+            var aFavs = angular.fromJson(window.localStorage.getItem('favorites'));
+            oCardsSorted.forEach(function (i) {
+                if (aFavs[index]) {
+                    i.isFav = true;
+                }
+                i.index = index;
+                index++;
+            });
 
-        var iTotal = oCardsSorted.length;
-        console.log('filled oCardsSorted. Total:' + iTotal);
-        return oCardsSorted;
-    };
-    db.get = function () {
-        console.debug('Database.fetchJson');
+            var iTotal = oCardsSorted.length;
+            console.log('filled oCardsSorted. Total:' + iTotal);
+            return oCardsSorted;
+        };
+        db.get = function () {
+            console.debug('Database.fetchJson');
 
-        var responsePromise = $http.get("allsets.json");
-        var deferred = $q.defer();
+            var responsePromise = $http.get("allsets.json");
+            var deferred = $q.defer();
 
-        responsePromise.success(function (data, status, headers, config) {
-            console.log('AJAX success');
-            var oCardssorted = db.format(data);
-            deferred.resolve(oCardssorted);
-        });
-        responsePromise.error(function (data, status, headers, config) {
-            console.error("AJAX failed");
-            deferred.reject('AJAX failed');
-        });
-        return deferred.promise;
-    };
-    return db;
-})
+            responsePromise.success(function (data, status, headers, config) {
+                console.log('AJAX success');
+                var oCardssorted = db.format(data);
+                deferred.resolve(oCardssorted);
+            });
+            responsePromise.error(function (data, status, headers, config) {
+                console.error("AJAX failed");
+                deferred.reject('AJAX failed');
+            });
+            return deferred.promise;
+        };
+        return db;
+    })
 
     .service('Render', function () {
         return {
