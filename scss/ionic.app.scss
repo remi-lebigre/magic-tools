@@ -17,7 +17,7 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
-
+$StatsSize: 1.8em;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
@@ -64,17 +64,17 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   height: auto;
 }
 
-#card-modal-statistics {
-  img {
-    width: 25px;
-  }
-  margin-top: 13px;
-  position: relative;
-  #stats {
-    position: absolute;
-    bottom: 0;
-    font-size: 1.8em;
-    transform: translate(-50%, 0);
-    left: 50%;
+.stats {
+  position: absolute;
+  font-size: $StatsSize;
+}
+
+#card-modal {
+  ion-footer-bar {
+    .stats {
+      right: 10px;
+      transform: translate(0, -50%);
+      top: 50%;
+    }
   }
 }

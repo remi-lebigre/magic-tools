@@ -7706,14 +7706,11 @@ a.button {
   width: 100%;
   height: auto; }
 
-#card-modal-statistics {
-  margin-top: 13px;
-  position: relative; }
-  #card-modal-statistics img {
-    width: 25px; }
-  #card-modal-statistics #stats {
-    position: absolute;
-    bottom: 0;
-    font-size: 1.8em;
-    transform: translate(-50%, 0);
-    left: 50%; }
+.stats {
+  position: absolute;
+  font-size: 1.8em; }
+
+#card-modal ion-footer-bar .stats {
+  right: 10px;
+  transform: translate(0, -50%);
+  top: 50%; }

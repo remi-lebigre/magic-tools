@@ -9,15 +9,11 @@
             <button class="button button-clear" ng-click="closeCard()">Close</button>
         </div>
     </ion-header-bar>
-    <ion-content>
+    <ion-content ng-click="closeCard()">
 
         <div class="row">
-            <div class="col col-80">
+            <div class="col col-80 col-offset-10">
                 <img id="card-modal-image" src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
-            </div>
-            <div class="col col-20" id="card-modal-statistics">
-                <div ng-bind-html="card._manaCost"></div>
-                <p id="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
             </div>
         </div>
 
@@ -32,8 +28,9 @@
 
     </ion-content>
 
-    <ion-footer-bar>
+    <ion-footer-bar ng-click="closeCard()">
         <div ng-bind-html="card._manaCost"></div>
-        <p ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
+        <p class="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
     </ion-footer-bar>
+
 </ion-modal-view>
