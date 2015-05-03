@@ -1,36 +1,26 @@
-<ion-modal-view class="row">
-    <ion-header-bar>
-        <h1 class="title">{{card.name}}
-            <i class="icon ion-star"></i>
-            <i class="icon ion-plus"></i>
-        </h1>
+<ion-view view-title="Favorites" ng-controller="FavoritesController">
+    <ion-content>
+        <div class="list" ng-repeat="card in favoriteCards">
+            <a class="item item-thumbnail-left" href="#" ng-click="showCard(card.index)">
+                <img src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
 
-        <div class="buttons">
-            <button class="button button-clear" ng-click="closeCard()">Close</button>
+                <h2>{{card.name}}
+                    <i class="icon ion-star" ng-class="{ 'selected': card.isFav }"
+                       ng-click="$event.stopPropagation();toggleFav(card.index)"></i>
+                    <i class="icon ion-plus"></i></h2>
+
+                <div style="position:relative;">
+                    <span ng-bind-html="card._manaCost"></span>
+                    <span class="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</span>
+                </div>
+                <p>>{{card.originalText}} </p>
+
+                <div class="row">
+                </div>
+            </a>
         </div>
-    </ion-header-bar>
-    <ion-content ng-click="closeCard()">
-
-        <div class="row">
-            <div class="col col-80 col-offset-10">
-                <img id="card-modal-image" src="http://api.mtgdb.info/content/card_images/{{card.multiverseid}}.jpeg">
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="item item-divider">
-                {{card.type}}
-            </div>
-            <div class="item item-text-wrap">
-                {{card.originalText}}
-            </div>
-        </div>
-
     </ion-content>
 
-    <ion-footer-bar ng-click="closeCard()">
-        <div ng-bind-html="card._manaCost"></div>
-        <p class="stats" ng-if="card.power">{{card.power}}/{{card.toughness}}</p>
-    </ion-footer-bar>
+</ion-view>
 
-</ion-modal-view>
+

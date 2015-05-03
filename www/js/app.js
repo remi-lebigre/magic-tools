@@ -58,15 +58,25 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
-            //.state('app.favorites', {
-            //    url: "/favorites",
-            //    views: {
-            //        'menuContent': {
-            //            templateUrl: "templates/favorites.html",
-            //            controller: 'FavoritesController'
-            //        }
-            //    }
-            //});
+            .state('app.build', {
+                url: "/builder/{buildId}",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/build.html",
+                        controller: 'BuildsController'
+                    }
+                }
+            })
+
+            .state('app.favorites', {
+                url: "/favorites",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/favorites.html",
+                        controller: 'FavoritesController'
+                    }
+                }
+            });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/search');
     });
