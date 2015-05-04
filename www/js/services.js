@@ -17,16 +17,31 @@ angular.module('starter.controllers')
             }
             var index = 0;
             var aFavs = angular.fromJson(window.localStorage.getItem('favorites'));
-                oCardsSorted.forEach(function (i) {
-                    (aFavs && aFavs[index]) ?  i.isFav = true : i.isFav = false;
-                    i.index = index;
-                    index++;
-                });
+            oCardsSorted.forEach(function (card) {
+                (aFavs && aFavs[index]) ? card.isFav = true : card.isFav = false;
+                card.index = index;
+                index++;
+
+                //add translated name to cards object if french trad is present
+                card.translated_name = '';
+                if (card.foreignNames && index < 100) {
+                    for (var language = 0; language < card.foreignNames.length; language++) {
+                        if (card.foreignNames[language].language == "French") {
+                            var temp = card.name;
+                            card.name = card.foreignNames[language].name;
+                            card.translated_name = temp;
+
+                        }
+                    }
+                }
+
+            });
 
             var iTotal = oCardsSorted.length;
             console.log('filled oCardsSorted. Total:' + iTotal);
             return oCardsSorted;
         };
+
         db.get = function () {
             console.debug('Database.fetchJson');
 
